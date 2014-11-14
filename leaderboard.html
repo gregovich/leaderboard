@@ -1,0 +1,101 @@
+<head>
+  <title>leaderboard</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <nav>
+        <ul class="nav nav-pills pull-right">
+          <li role="presentation" class="active"><a href="#">Home</a></li>
+          <li role="presentation" class="active"><a href="#">About</a></li>
+          <li role="presentation" class="active"><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+        <h3 class="text-muted">The Leaderboard</h3>
+    </div>
+    
+    <div class="jumbotron">
+      <h1>Leaderboard 2014</h1>
+      <p>Welcome to the the leaders of tomorrow...</p>
+    </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+    {{> leaderboard}}
+    </div>
+
+    <div class="col-lg-6">
+    {{> addPlayerForm}}
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; Leaderboard, LCC 2014</p>
+  </footer>
+  </div>
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="leaderboard">
+<div class="bs-example">
+  <table class="table">
+    <thead>
+      <tr class="active">
+        <th>Player</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each player}}
+      <tr class="{{selectedClass}}">
+        <td class="player">{{name}}:</td>
+        <td> {{score}}</td>
+      </tr>
+      {{/each}}
+      {{#if showSelectedPlayer}}
+      <tr class="info">
+        <td style="text-align:right;">
+          <strong>Selected Player:</strong>
+        </td>
+        <td>
+          <strong style="color: #990000;">
+            {{showSelectedPlayer.name}}
+          </strong>
+        </td>
+      </tr>
+      {{/if}}
+      <tr class="active">
+        <td>
+          <input type="button" 
+                  class="increment btn btn-sm btn-success" 
+                  value="Give 5 points">
+        </td>
+        <td>
+          <input type="button" 
+                  class="decrement btn btn-sm btn-danger" 
+                  value="Take 5 points">
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+</template>
+
+<template name="addPlayerForm">
+  <form>
+    <label name="playerName">Player</label>
+    <input type="text" name="playerName">
+    <input type="submit" class="btn btn-sm btn-info" value="Add Player">
+  </form>
+</template>
+
